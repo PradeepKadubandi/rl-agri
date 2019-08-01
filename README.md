@@ -29,3 +29,5 @@ However a further simplication can be made: from the reward perspective, it does
 
 The final form is the state and action space design I have chosen. The cells are chosen in natural sequence (cells in top row from left to right and then cells in second row and so on till the last row) - however each final farm plan is a different state (as it should be because each one yields a different reward). So the state is a combination of 'current index' and 'farm state' , action space contains only 2 actions - plant corn or bean. From a given state, when one of actions is performed, the cell in 'current index' is modified according to action and the envirnment chooses next state to be 'next index' and 'new farm state' (obtained by updating the action selection in current index). In this model, the branching factor of state transitions is just 2 making the problem computationally efficient.
 
+## References
+- https://github.com/pbsinclair42/MCTS/blob/master/mcts.py
