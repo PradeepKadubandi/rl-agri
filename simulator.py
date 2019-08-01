@@ -26,9 +26,11 @@ class farmcell:
         return self.index == (self.n, 0)
 
     def takeAction(self, action):
-        self.farm[self.index] = action
+        # self.farm[self.index] = action # A subtle bug, performing the action should not alter the current state.
         nextIndex = (self.index[0], self.index[1] + 1) if self.index[1] < self.n - 1 else (self.index[0] + 1, 0)
-        return farmcell(self.n, nextIndex, np.array(self.farm))
+        newFarm = np.array(self.farm)
+        newFarm[self.index] = action
+        return farmcell(self.n, nextIndex, newFarm)
 
     def getReward(self):
         return sum([self._get_reward_for_cell((a, b)) for a in range(self.n) for b in range(self.n)])

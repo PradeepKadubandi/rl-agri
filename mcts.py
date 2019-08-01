@@ -39,7 +39,7 @@ class treeNode():
 
 class mcts():
     def __init__(self, timeLimit=None, iterationLimit=None, explorationConstant=1 / math.sqrt(2),
-                 rolloutPolicy=randomPolicy):
+                 rolloutPolicy=randomPolicy, initialState=None):
         if timeLimit != None:
             if iterationLimit != None:
                 raise ValueError("Cannot have both a time limit and an iteration limit")
@@ -57,8 +57,19 @@ class mcts():
         self.explorationConstant = explorationConstant
         self.rollout = rolloutPolicy
 
-    def search(self, initialState):
-        self.root = treeNode(initialState, None)
+        # Changes by me
+        self.root = None
+        if initialState is not None:
+            self.root = treeNode(initialState, None)
+
+    # Modifications : If you want to persist tree between searches,
+    # pass the intialState at construction time and do not pass a value for initialState in search.
+    def search(self, initialState=None):
+        if initialState is not None:
+            self.root = treeNode(initialState, None)
+
+        if self.root is None:
+            raise ValueError('The initial state parameter must be used either with the constructor or search method')
 
         if self.limitType == 'time':
             # i = 0
