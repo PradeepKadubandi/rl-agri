@@ -13,11 +13,10 @@ class StateValue(IntEnum):
 # The simulator reward implementation is also in this class though
 # it can be easily separated to a different simulator class if there is a future need.
 class farmcell:
-
-    def __init__(self, farm_size, index, farm):
-        self.n = farm_size
+    def __init__(self, index, farm):
         self.index = index
         self.farm = farm
+        self.n = farm.shape[0]
 
     def getPossibleActions(self):
         return [StateValue.Bean, StateValue.Corn]
@@ -30,7 +29,7 @@ class farmcell:
         nextIndex = (self.index[0], self.index[1] + 1) if self.index[1] < self.n - 1 else (self.index[0] + 1, 0)
         newFarm = np.array(self.farm)
         newFarm[self.index] = action
-        return farmcell(self.n, nextIndex, newFarm)
+        return farmcell(nextIndex, newFarm)
 
     def getReward(self):
         return sum([self._get_reward_for_cell((a, b)) for a in range(self.n) for b in range(self.n)])
