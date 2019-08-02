@@ -1,10 +1,11 @@
 # rl-agri
 
-- [Problem Specification](#problem-specification)
-- [Problem Setup](#problem-formulation)
-- [State and Action space design](#design)
-- [Future work](#todo)
-- [References](#references)
+- [rl-agri](#rl-agri)
+  - [Problem Specification](#problem-specification)
+  - [Problem Formulation](#problem-formulation)
+  - [Design](#design)
+  - [Todo](#todo)
+  - [References](#references)
 
 ## Problem Specification
 You are building an simplistic AI agent that is responsible for planning a farm.  The job of the agent is to choose the locations at which to plant two crops, corn and beans.  The natural environment is modeled by a "simulator", which will for our toy exercise have very basic rules, and the agent interacts with the simulator to learn how to best plan the farm.
@@ -37,7 +38,9 @@ The final form is the state and action space design I have chosen. The cells are
 
 ## Todo
 - Try different exploration constants
-- Finish reading the survey paper below in references and see if there are any other alternatives to try
+- Try a different selection technique for optimal rollout (based on count and reward) (idea from paper)
+- Does it make sense to try the combination of TD and MCTS? (need to understand better) (from paper)
+- Finish reading the survey paper below in references and see if there are other alternatives to try seem promising
 - Try a different simulator model where you start with cell in center and try a combination of all adjacent cell plants as next states. In this the branching factor is still a constant (2^8 = 256) though it's lot more than 2.
   - Or we can keep the branching factor as 2 and try the states in a pre-defined spiral order (say clock wise) from center cell as well. The basis for these ideas is the nature of reward system where cells are impacted by adjacent cells. But I will know how it performs only after implementing it. 
 
