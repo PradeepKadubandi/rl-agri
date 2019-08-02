@@ -37,9 +37,11 @@ The final form is the state and action space design I have chosen. The cells are
 
 ## Todo
 - Try different exploration constants
-- Try increasing the timeLimit for agent to see how it behaves (theoritically it should be same as running multiple epochs with persistent agent, so it should not improve a lot)
+- Try increasing the timeLimit for agent to see how it behaves. (It's not the same as persisting tree across searches because of way exploration works)
+- Finish reading the survey paper below in references and see if there are any other alternatives to try
 - Try a different simulator model where you start with cell in center and try a combination of all adjacent cell plants as next states. In this the branching factor is still a constant (2^8 = 256) though it's lot more than 2.
   - Or we can keep the branching factor as 2 and try the states in a pre-defined spiral order (say clock wise) from center cell as well. The basis for these ideas is the nature of reward system where cells are impacted by adjacent cells. But I will know how it performs only after implementing it. 
 
 ## References
+- http://mcts.ai/pubs/mcts-survey-master.pdf (Still reading)
 - https://github.com/pbsinclair42/MCTS/blob/master/mcts.py
