@@ -1,10 +1,10 @@
 # rl-agri
 
-- [Problem Specification](spec)
-- [Problem Setup](setup)
-- [State and Action space design](design)
-- [Future work](todo)
-- [References](references)
+- [Problem Specification](#spec)
+- [Problem Setup](#setup)
+- [State and Action space design](#design)
+- [Future work](#todo)
+- [References](#references)
 
 ## [create an anchor](#spec)Problem Statement (Specification)
 You are building an simplistic AI agent that is responsible for planning a farm.  The job of the agent is to choose the locations at which to plant two crops, corn and beans.  The natural environment is modeled by a "simulator", which will for our toy exercise have very basic rules, and the agent interacts with the simulator to learn how to best plan the farm.
