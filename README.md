@@ -1,12 +1,12 @@
 # rl-agri
 
-- [Problem Specification](#spec)
-- [Problem Setup](#setup)
+- [Problem Specification](#problem-specification)
+- [Problem Setup](#problem-formulation)
 - [State and Action space design](#design)
 - [Future work](#todo)
 - [References](#references)
 
-## [create an anchor](#spec)Problem Statement (Specification)
+## Problem Specification
 You are building an simplistic AI agent that is responsible for planning a farm.  The job of the agent is to choose the locations at which to plant two crops, corn and beans.  The natural environment is modeled by a "simulator", which will for our toy exercise have very basic rules, and the agent interacts with the simulator to learn how to best plan the farm.
 
 Simulator: the simulator models a farm that is n x n, where n is a configuration parameter.  In each of the n^2 cells, there can be either a corn plant, a bean plant, or empty soil.  The farm starts at time 0 completely empty.  The simulator simulates time ticking forward one day at a time while an agent (which is described next) can do actions each day such as planting a plant or harvesting a plant.  A corn plant in our simulation takes 90 days to grow from time of planting to time of harvest.  A bean plant in our simulation also takes 90 days.  At the 90 day mark, or thereafter, a plant can be harvested, producing 10 units of food (corn or beans), and the cell that the plant was in becomes empty again.  Since bean plants help corn be more productive, for every bean plant that is in one of the adjacent 8 cells to a corn plant, the corn plant produces one extra unit of food at time of harvest.  That is, if there are 3 bean plants directly adjacent to a corn plant, then the corn plant will produce 13 units of food upon harvest rather than 10.  A bean plant that is not next to a corn plant produces 10 units of food upon harvest, and a bean plant that is adjacent to one or more corn plants produces 15 units of food upon harvest.
@@ -17,7 +17,7 @@ Task for you to implement: implement a basic simulator that follows the rules ab
 
 Resource: Reinforcement Learning by Sutton and Barto (2nd edition, available for free online)
 
-## [create an anchor](#setup)Problem formulation (setup)
+## Problem Formulation
 The notion of time for the given problem specification is not too relevant or interesting given the available time period for agent is 91 days. Obviously agent can harvest (the only action that yields any reward) only once in this period on the last day and only those cells that it planted on first day. So, leaving any farm cell empty on first day does not also makes sense - becauce the agent will obviously get a better reward by planting either corn or bean in that cell instead.
 
 So I am going to treat the problem slightly differently - the problem is to find a farm plan (that fills all the cells with either corn or bean on the first day) that maximizes the yield on 91st day. Once a complete farm plan (for the first day) is obtained, it can be treated as a terminal state and the reward is the effect of harvesting every cell on 91st day.
