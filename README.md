@@ -1,4 +1,4 @@
-# rl-agri
+# rl-agri (Task given for interview with NSL lab @ USC)
 
 - [rl-agri](#rl-agri)
   - [Problem Specification](#problem-specification)
